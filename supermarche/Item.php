@@ -5,7 +5,7 @@ namespace Models;
 
 class Item{
     public string $name;
-    public string $price;
+    public float $price;
     public int $weight;
 
     public function getName(){
@@ -22,7 +22,7 @@ class Item{
     }
 
     public function setPrice($price){
-        $this->price = number_format(($price/100), 2);
+        $this->price = $price/100;
         return $this->price;
     }
 
