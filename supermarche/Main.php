@@ -31,6 +31,29 @@ $shoppingCart->addItem($chewingGum);
 //$shoppingCart->removeItem($item);
 
 echo $shoppingCart->toString();
+echo "---------------------------------------------------------------------------<br>";
+
+$payable1 = new Models\Payable;
+$payable1->label($item);
+$payable1->taxRatePerTenThousand($item) . "<br/>";
+$payable1->cost(10.5);
+
+$payable2 = new Models\Payable;
+$payable2->label($chewingGum);
+$payable2->taxRatePerTenThousand($chewingGum) . "<br/>";
+$payable2->cost(10.5);
+
+$invoice1 = new Models\Invoice;
+$invoice1->add($payable1);
+$invoice1->add($payable2);
+echo "<u>Invoice 1</u><br>";
+
+foreach($invoice1->payable as $payable){
+    echo $payable->label . "<br>Tax rate : " . $payable->taxRate . "<br>Cost : " . $payable->cost . "<br>";
+}
+echo "Total amount : " . $invoice1->totalAmount() . "<br>Total Tax : " . $invoice1->totalTax() . "<br>";
+
+echo "---------------------------------------------------------------------------<br>";
 
 $shoppingCart2 = new Models\ShoppingCart;
 
@@ -49,15 +72,27 @@ $shoppingCart2->addItem($ticket);
 
 echo $shoppingCart2->toString();
 
-$payable = new Models\Payable;
-$payable->taxRatePerTenThousand($ticket) . "<br/>";
-$payable->cost(10.5);
+echo "---------------------------------------------------------------------------<br>";
 
-$payable2 = new Models\Payable;
-$payable2->taxRatePerTenThousand($apple) . "<br/>";
-$payable2->cost(10.5);
+$payable3 = new Models\Payable;
+$payable3->label($ticket);
+$payable3->taxRatePerTenThousand($ticket) . "<br/>";
+$payable3->cost(10.5);
 
-$invoice = new Models\Invoice;
-$invoice->add($payable);
-$invoice->add($payable2);
+$payable4 = new Models\Payable;
+$payable4->label($apple);
+$payable4->taxRatePerTenThousand($apple) . "<br/>";
+$payable4->cost(10.5);
+
+$invoice2 = new Models\Invoice;
+$invoice2->add($payable3);
+$invoice2->add($payable4);
+echo "<u>Invoice 2</u><br>";
+
+foreach($invoice2->payable as $payable){
+    echo $payable->label . "<br>Tax rate : " . $payable->taxRate . "<br>Cost : " . $payable->cost . "<br>";
+}
+
+echo "Total amount : " . $invoice2->totalAmount() . "<br>Total Tax : " . $invoice2->totalTax();
+ 
 

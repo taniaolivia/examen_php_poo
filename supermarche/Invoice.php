@@ -5,6 +5,9 @@ namespace Models;
 use Models\Payable;
 class Invoice {
     public $payable = array();
+    public int $totalTax = 0;
+    public int $totalAmount = 0;
+
     public function __construct(){
 
     }
@@ -16,16 +19,17 @@ class Invoice {
 
     public function totalAmount(){
         foreach($this->payable as $payable){
-            $this->payable += $payable->cost;
+            $this->totalAmount += $payable->cost;
         }
-        return $this->payable;
+        return $this->totalAmount;
     }
 
     public function totalTax(){
+
         foreach($this->payable as $payable){
-            $this->payable += $payable->taxRate;
+            $this->totalTax += $payable->taxRate;
         }
-        return $this->payable;
+        return $this->totalTax;
     }
 
 }
