@@ -1,4 +1,4 @@
-# examen_php_poo
+# Examen final PHP POO
 
-Nom : Tania OLIVIA
-Lien de github : https://github.com/taniaolivia/examen_php_poo.git
+- Nom : Tania OLIVIA
+- Lien de github : https://github.com/taniaolivia/examen_php_poo.git
